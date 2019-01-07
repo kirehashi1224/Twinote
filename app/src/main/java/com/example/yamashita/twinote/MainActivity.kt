@@ -4,9 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import com.example.yamashita.twinote.db.TweetOpenHelper
+import com.example.yamashita.twinote.model.Folder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
@@ -51,6 +55,25 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+
+        val db = TweetOpenHelper(this).writableDatabase
+        val cursor = db.query(TweetOpenHelper.FOLDER_TABLE, arrayOf("folder_name", "_id"), null, null, null, null, null, null)
+        val folderList = mutableListOf<Folder>()
+        if(cursor.moveToFirst()){
+            do {
+                folderList.add(Folder(cursor.getString(cursor.getColumnIndex("folder_name")),
+                    cursor.getString(cursor.getColumnIndex("_id"))))
+            }while (cursor.moveToNext())
+        }
+
+        val recyclerView = show_folder_recycler
+        val llManager = LinearLayoutManager(applicationContext)
+        llManager.orientation = LinearLayoutManager.VERTICAL
+        recyclerView.layoutManager = llManager
+        val adapter = ShowFolderAdapter(folderList)
+        recyclerView.adapter = adapter
+
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
