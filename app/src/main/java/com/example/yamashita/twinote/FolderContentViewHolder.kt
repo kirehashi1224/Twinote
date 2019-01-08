@@ -8,4 +8,5 @@ import com.example.yamashita.twinote.R
 class FolderContentViewHolder(v: View): RecyclerView.ViewHolder(v){
     val base = v
     val tweetContent: TextView = v.findViewById(R.id.tweet_content)
+    val tweetAuthor: TextView = v.findViewById(R.id.tweet_author)
 }

@@ -22,6 +22,7 @@ class FolderContentAdapter(tweetList: List<Tweet>): RecyclerView.Adapter<FolderC
 
     override fun onBindViewHolder(holder: FolderContentViewHolder, position: Int) {
         holder.tweetContent.text = tweetList[position].text
+        holder.tweetAuthor.text = tweetList[position].user
         val id = tweetList[position].id
         holder.base.setOnClickListener {
             val uri = tweetList[position].uri
