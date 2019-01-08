@@ -1,15 +1,11 @@
-package jp.ac.titech.itpro.sdl.cooknote
+package com.example.yamashita.twinote
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.yamashita.twinote.MainActivity
-import com.example.yamashita.twinote.R
 import com.example.yamashita.twinote.db.TweetOpenHelper
 import com.example.yamashita.twinote.model.Tweet
 
@@ -28,9 +24,6 @@ class FolderContentAdapter(tweetList: List<Tweet>): RecyclerView.Adapter<FolderC
             val uri = tweetList[position].uri
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
             it.context.startActivity(intent)
-            /* val intent = Intent(it.context, WebViewActivity::class.java)
-            intent.putExtra("uri", uri)
-            it.context.startActivity(intent)*/
         }
         holder.base.setOnLongClickListener {
             val items = arrayOf("削除")

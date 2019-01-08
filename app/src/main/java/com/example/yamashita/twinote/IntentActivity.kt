@@ -85,51 +85,5 @@ class IntentActivity : AppCompatActivity() {
                 }
             }
         }.execute()
-
-        /*callSingle(tweetId).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doAfterSuccess {
-                val builder = StringBuilder()
-                builder.append("user:").append(it.user.screenName).append(" / ").append(it.text)
-                tweetTest.text = builder.toString()
-            }
-            .doOnError {
-                val sw = StringWriter()
-                val pw = PrintWriter(sw)
-                it.printStackTrace(pw)
-                Log.e("twinote", sw.toString())
-            }
-            .subscribe()*/
-
-        /*Single.create(SingleOnSubscribe<Status> {
-            val status = MainActivity.twitter.showStatus(tweetId)
-            try{
-                it.onSuccess(status)
-            }catch(e: Exception){
-                it.onError((Throwable("Fail to get status")))
-            }
-        }).subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess {
-                val builder = StringBuilder()
-                builder.append("user:").append(it.user.screenName).append(" / ").append(it.text)
-                tweetTest.text = builder.toString()
-            }
-            .doOnError {
-                Log.v("Twinote", it.message)
-            }
-            .subscribe()*/
-    }
-
-    fun callSingle(tweetId: Long): Single<Status> {
-        return Single.create {
-
-            try{
-                val status = MainActivity.twitter.showStatus(tweetId)
-                it.onSuccess(status)
-            }catch(e: Exception){
-                it.onError((Throwable("Fail to get status")))
-            }
-        }
     }
 }

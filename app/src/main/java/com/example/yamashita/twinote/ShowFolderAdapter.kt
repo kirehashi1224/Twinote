@@ -1,9 +1,7 @@
 package com.example.yamashita.twinote
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -49,20 +47,6 @@ class ShowFolderAdapter(folders: List<Folder>): RecyclerView.Adapter<FolderViewH
                     }.show()
             return@setOnLongClickListener true
         }
-
-
-
-        /*{
-            val items = arrayOf("削除")
-            AlertDialog.Builder(it.context)
-                    .setTitle("設定")
-                    .setItems(items, DialogInterface.OnClickListener { dialog, which ->
-                        fun onclick(dialog: DialogInterface, which: Int){
-
-                        }
-                    }).show()
-            return true
-        }*/
     }
 
     override fun getItemCount(): Int {

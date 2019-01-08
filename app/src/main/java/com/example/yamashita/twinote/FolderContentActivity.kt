@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.example.yamashita.twinote.db.TweetOpenHelper
 import com.example.yamashita.twinote.model.Tweet
-import jp.ac.titech.itpro.sdl.cooknote.FolderContentAdapter
 import kotlinx.android.synthetic.main.activity_folder_content.*
 
 class FolderContentActivity : AppCompatActivity() {
